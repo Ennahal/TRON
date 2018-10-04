@@ -1,6 +1,11 @@
 /* ******************************* */
 /*           GLOBAL                */
 /* ******************************* */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .containers {
     display: flex;
     flex-direction: row;
@@ -12,7 +17,7 @@
     background-color: green;
 }
 .structure_lobby .container_rooms {
-    background-color: red;
+    background-color: black;
     width: 20%;
 }
 .structure_lobby .container_chat {
@@ -27,15 +32,38 @@
 /*           REGISTER FORM         */
 /* ******************************* */
 
-/* * {
+* {
     font-family: 'Chakra Petch', sans-serif;
-    font-family: 'Monoton', cursive;
-} */
+    /* font-family: 'Monoton', cursive; */
+}
 
 /* ******************************* */
 /*           LOBBY                 */
 /* ******************************* */
 
+/* ROOM */
+.chat_list {
+    border-bottom: 1px solid #c4c4c4;
+    margin: 0;
+    padding: 18px 16px 10px;
+    color: rgb(123, 229, 253);
+}
+
+.active_chat{ background:black;}
+.chat_people{ overflow:hidden; clear:both;display: flex;}
+.chat_img {
+    float: left;
+    width: 20%;
+}
+#imgOvO {margin-top: 9px;}
+.chat_img img {width: 100%;border-radius: 50%;}
+.chat_ib {
+    float: left;
+    padding: 0 0 0 15px;
+    width: 80%;
+}
+#tone {margin-top: 15px;}
+#ttwo {margin-top: 15px;}
 
 /* ******************************* */
 /*           IN GAME               */
