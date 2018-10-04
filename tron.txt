@@ -1,0 +1,30 @@
+Lead : Rheda
+Github : https://github.com/Ennahal/TRON
+
+Ennoncé : faire un tron en websocket
+
+Front : Interface (html/css) | Canvas (pixi.js, three.js) | dev front (websocket / déplacement / refresh / gameloop) | assets/sound
+Sébastien
+Timothy
+Jonathan
+Kenjy
+Hajar
+
+Back : Server (express + socketio) | gameloop | Arbitre : gérer les collisions | gestion du lobby | tableau des scores | powerup | map | deplacement zqsd
+Laure
+Soleyne
+Mael
+Florian
+Mouny
+Fabrice
+
+Protocol :
+Les différents échange entre le front et le back :
+Dénomination des messages, les contenus, etc...
+les déplacements
+les powerups
+les images
+explosions
+gagner un point / la partie
+perdre
+chronométrer le jeu (setTimeout setInterval requestAnimationFrame*)
