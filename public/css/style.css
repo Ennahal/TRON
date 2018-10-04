@@ -128,10 +128,10 @@ body, html{
     margin: 0 auto;
     color: rgb(123, 229, 253);
 }
-/* * {
+* {
     font-family: 'Chakra Petch', sans-serif;
-    font-family: 'Monoton', cursive;
-} */
+    /* font-family: 'Monoton', cursive; */
+}
 
 /* ******************************* */
 /*           LOBBY                 */
