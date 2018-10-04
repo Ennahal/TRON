@@ -1,11 +1,137 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+body, html{
+	width: 100%;
+	height: 100%;
+}
+
+/* ******************************* */
+/*           GLOBAL                */
+/* ******************************* */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.containers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 100vh;
+}
+.container_users {
+    width: 20%;
+    background-color: green;
+}
+.structure_lobby .container_rooms {
+    background-color: red;
+    width: 20%;
+}
+.structure_lobby .container_chat {
+    width: 60%;
+    background-color: blue;
+}
+.container_game {
+    width: 80%;
+    background-color: black;
+}
 /* ******************************* */
 /*           REGISTER FORM         */
 /* ******************************* */
+.structure_register_absolute{
+    background: url('../img/backgroundTrone01.jpg') no-repeat;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-size: 100% 100%;
+}
+.structure_register_absolute .register_form{
+    border: 3px solid rgb(123, 229, 253);
+    border-radius: 15px;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 30%;
+    height: min-content;
+    background-color: #000;
+}
 
-/* * {
+.structure_register_absolute .register_form ::placeholder{
+    color: rgb(123, 229, 253);
+}
+
+.structure_register_absolute input{
+    border: none;
+    display: block;
+    background: transparent;
+    border-bottom: 2px solid rgb(123, 229, 253);
+    outline: 0;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 30px 10px 80px;
+    font-family: 'Chakra Petch', sans-serif; 
+    color: rgb(123, 229, 253);
+    width: 70%;
+}
+.structure_register_absolute .btn{
+    border: 3px solid rgb(123, 229, 253);
+    border-radius: 27%;
+    width: 30%;
+    padding: 10px; 
+    margin: 0 auto;
+    color: rgb(123, 229, 253);
+}
+* {
     font-family: 'Chakra Petch', sans-serif;
-    font-family: 'Monoton', cursive;
-} */
+    /* font-family: 'Monoton', cursive; */
+}
 
 /* ******************************* */
 /*           LOBBY                 */
