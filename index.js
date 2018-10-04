@@ -10,7 +10,7 @@ class Server {
         this.userList = [];// Liste des utilisateurs connnectés
         // this.msgList = [];// Liste des anciens messages -> has been, vu qu'on a l'historique indépendamment pour chaque canal
         // key : nom du canal, value : liste des messages (historique)
-        this.chanList = { "home": [], "test": [], "bouffe": [], "pro04": [], "3wa": [], "gaming": [], "afk": [] };// Liste des canaux/rooms
+        this.chanList = { "home": [], "gaming": [] };// Liste des canaux/rooms
         this.init();
     }
     init() {
