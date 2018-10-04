@@ -1,4 +1,29 @@
 /* ******************************* */
+/*           GLOBAL                */
+/* ******************************* */
+.containers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 100vh;
+}
+.container_users {
+    width: 20%;
+    background-color: green;
+}
+.structure_lobby .container_rooms {
+    background-color: red;
+    width: 20%;
+}
+.structure_lobby .container_chat {
+    width: 60%;
+    background-color: blue;
+}
+.container_game {
+    width: 80%;
+    background-color: black;
+}
+/* ******************************* */
 /*           REGISTER FORM         */
 /* ******************************* */
 
