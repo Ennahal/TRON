@@ -1,18 +1,22 @@
+const Map = require('./models/Game.class.js');
 //Game.class.js => Game => socket.game_join, socket.game_leave, socket.game_ready
 // uniqid pour la Game => socket.game_join_ID
 // creation de l'unique Id
-const NB_PLAYER = 4;
+const NB_PLAYER_FFA = 4;
+const NB_PLAYER_FTF = 2
 const HEIGHT = 80;
 const WIDTH = 60;
 const uniqid = require('uniqid');
 class Game
 {
-	constructor(player)
+	constructor(player, type)
 	{
 		this.host = player;
 		this.listPlayer = [];
 		this.listPlayerReady = [];
 		this.id = uniqid();
+		this.type = type
+		this.nb_player = undefined;
 		this.join(player);
 		this.playerLive = []
 		this.listLooser = [];
@@ -52,11 +56,6 @@ class Game
 	}
 	join(player)
 	{
-	  
-	  player.socket.on('game_finish', () => {
-	     //for(let i = 0; i < this.listLooser.)
-	  });
-	  
 		player.socket.on('game_leave', () =>
 		{
 			let i = 0
@@ -95,7 +94,12 @@ class Game
 	}
 	gameReady()
 	{
-	  	if (this.listPlayerReady.length == NB_PLAYER)
+	    if(this.type == 'FFA')
+	        this.nb_player = NB_PLAYER_FFA;
+	    else
+	        this.nb_player = NB_PLAYER_FTF;
+
+	  	if (this.listPlayerReady.length == this.nb_player)
 	  	{
 	  		// générer la map
 	  		this.map = new Map(HEIGHT, WIDTH, this.listPlayerReady);

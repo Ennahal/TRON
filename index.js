@@ -32,14 +32,13 @@ class Server
 		this.app = this.express();
 		this.http = require('http').Server(this.app);
 		this.io = require('socket.io')(this.http);
-		//this.rooms = [] ;
 		this.players = {};
 		this.games = {};
 		this.init();
 	}
-	createGame(player)
+	createGame(player, type)
 	{
-		var game = new Game(player);
+		var game = new Game(player, type);// TFT || FFA
 		this.games[game.id] = game;
 		// uniqid(); => dans Game.constructor
 		// Faire des trucs cools genre new Game :p
@@ -53,7 +52,7 @@ class Server
 		this.games[gameId].join(player);
 	}
 	createPlayer(socket, info)
-	{// const Player = require('models/Player.class.js');
+	{
 		var player = new Player(socket, info);
 		this.players[player.id] = player;
 		console.log("New Player > ", player.login);
@@ -64,7 +63,7 @@ class Server
 		// Envoyer la liste des games
 		socket.emit("game_list", Object.keys(this.games));
 		// Envoyer la liste des joueurs
-		socket.emit("user_list", Object.values(this.players).map((user) =>
+		this.io.emit("user_list", Object.values(this.players).map((user) =>
 		{
 			return {login:user.login, avatar:user.avatar, id:user.id};
 		}));
@@ -80,10 +79,11 @@ class Server
 			
 			socket.on("message_ffa", (content ="") => {
 			  let msg_ffa = {date:new Date(), login:socket.player.login, avatar:socket.player.avatar, content:content}
-        this.io.to()
+        this.io.emit("message_ffa", msg_ffa);
 			});
 			socket.on("message_ftf", (content ="") => {
 			  let msg_ftf = {date:new Date(), login:socket.player.login, avatar:socket.player.avatar, content:content}
+			  this.io.emit("message_ftf", msg_ftf)
 			});
 			/* A VOIR AVEC LE FRONT POUR LES MESSAGES
 			socket.on("message", (channel, content = "") =>
