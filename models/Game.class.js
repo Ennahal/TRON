@@ -128,6 +128,7 @@ class Game
 	}
 	gameReady()
 	{
+		console.log(this.listPlayerReady.length, this.nb_player);
 	  	if (this.listPlayerReady.length == this.nb_player)
 	  	{
 	  		// générer la map
