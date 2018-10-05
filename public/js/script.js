@@ -34,15 +34,15 @@
     ctx.fillRect(0, 0, 810, 610);
     function draw(map)
     {
+        ctx.clearRect(0, 0, 810, 610);
         let x = 0;
         while (x < 80)
         {
             let y = 0;
-
             while (y < 60)
             {
                 ctx.fillStyle = map[x][y];
-                ctx.lineWidth = lineWidth;
+                //ctx.lineWidth = lineWidth;
                 ctx.fillRect(x * 10 + 5, y * 10 + 5, 10, 10);
                 y++;
             }
