@@ -20,6 +20,7 @@ class Game
 		this.playerLive = []
 		this.listLooser = [];
 		this.scoreTab = [];
+		console.log("New GAME > ", type);
 	}
 	go()
 	{
@@ -59,7 +60,7 @@ class Game
     }
     this.scoreTab.push({"player" : this.playerLive.splice(0,1),"score":4});
     this.sendAll("score",this.scoreTab);
-    this.listPlayer =[];
+    this.listPlayer = [];
 	}
 	
 	verifType(type)
