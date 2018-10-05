@@ -43,7 +43,7 @@ class Game
 		
 
 /*while(this.listLooser.length == 3) {
-          this.listLooser[i];
+          var tabthis.listLooser[i];
           i++;
       }*/
   
@@ -56,6 +56,7 @@ class Game
 		// sur 2 secondes => un rapide va se déplacer 3 fois, un moyen 2 fois, un lent 1 fois
 		// 200 tours de setInterval => 6 tours "utiles", 194 autres tours servent juste à gérer les vitesses différentes
 		/*
+		if()
 		  setInterval(() => {
 		    this.playerLive[i].move(this.map)
 		  }),200)
