@@ -20,7 +20,7 @@ class Game
 		this.join(player);
 		this.playerLive = []
 		this.listLooser = [];
-		this.scoreTab = [0,1,2,3]
+		this.scoreTab = [];
 	}
 	go()
 	{
@@ -57,7 +57,7 @@ class Game
 		// 200 tours de setInterval => 6 tours "utiles", 194 autres tours servent juste à gérer les vitesses différentes
 		/*
 		  setInterval(() => {
-		    
+		    this.playerLive[i].move(this.map)
 		  }),200)
 		*/
 	}
