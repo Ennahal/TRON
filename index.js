@@ -54,7 +54,7 @@ class Server
 		// Il va falloir trouver la première game qui correspond au type et qui est pas pleine
 		for (var id in this.games)
 		{
-			if (this.games[id].type == gameType && !this.games[id].isFull)
+			if (this.games[id].type == gameType && !this.games[id].isFull())
 				return this.games[id].join(player);
 		}
 		// Sinon on en créer une
