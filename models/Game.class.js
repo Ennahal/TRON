@@ -34,6 +34,13 @@ class Game
       
 		}, 100);// VARIABLE => 10 => 100
 		// 1 - Dire a tout que la partie est finie, finir la partie, envoyer le score/podium, etc...
+		/*
+
+      if(this.listLooser.length == 3) {
+          On fait appraitre la liste des joueurs du 1er au 4ème
+      }
+    */
+
 		// 2- 
 		// On va pas déplacer 100 fois par seconde les joueurs
 		// 1/10 => déplacement vitesse normale
