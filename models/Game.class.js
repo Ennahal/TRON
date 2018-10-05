@@ -17,7 +17,7 @@ class Game
 		this.id = uniqid();
 		this.nb_player = this.verifType(type);
 		this.join(player);
-		this.playerLive = []
+		this.playerLive = [];
 		this.listLooser = [];
 		this.scoreTab = [];
 		console.log("New GAME > ", type);
@@ -26,23 +26,31 @@ class Game
 	{
 	  this.listPlayerReady.map(i=> this.playerLive.push(i))
 		// gameloop
-		setInterval(()=>
+		var interv = setInterval(()=>
 		{
+			let i = 0;
+			while (i < this.playerLive.length)
+			{
+				if (this.playerLive[i].isAlive)
+					this.playerLive[i].move(this.map);
+				i++;
+			}
+ 			this.sendAll("game_map", this.map.map);
+			/*
 			while (this.playerLive > 1)
 			{
-			  if (this.playerLive[i].isAlive)
-					this.playerLive[i].move(this.map);
 		    else if (!this.listLooser.contains(this.playerLive[i].id))
 			    this.listLooser.push(this.playerLive.splice(i, 1));
-			}
+			}*/
 			
-	    this.sendAll("winner", this.playerLive[0].login + "a gagné")
+	    	//this.sendAll("winner", this.playerLive[0].login + "a gagné")
+	    	/*if(this.listLooser.length == 3){
+	      		gameFinish();
+			}*/
       
 		}, 100);// VARIABLE => 10 => 100
 		// 1 - Dire a tout que la partie est finie, finir la partie, envoyer le score/podium, etc...
-		if(this.listLooser.length == 3){
-      gameFinish();
-		}
+		
 
 		// 2- 
 		// On va pas déplacer 100 fois par seconde les joueurs
@@ -59,7 +67,7 @@ class Game
       i++;
     }
     this.scoreTab.push({"player" : this.playerLive.splice(0,1),"score":4});
-    this.sendAll("score",this.scoreTab);
+    this.sendAll("player_score",this.scoreTab);
     this.listPlayer = [];
 	}
 	
@@ -73,7 +81,7 @@ class Game
 	
 	isFull()
 	{
-	  if(this.listPlayerReady == this.nb_player)
+	  if(this.listPlayerReady.length == this.nb_player)
 	      return true
 	  return false
 	}
@@ -122,7 +130,14 @@ class Game
 	  	{
 	  		// générer la map
 	  		this.map = new Map(HEIGHT, WIDTH, this.listPlayerReady);
-	  		this.sendAll("game_start");
+	  		// 
+			let i = 0;
+			while (i < this.listPlayerReady.length)
+			{
+				this.listPlayerReady[i].socket.emit("game_start", this.listPlayerReady[i].color);
+				i++;
+			}
+	  		//this.sendAll("game_start");
 	  		setTimeout(() =>
 	  		{
 				this.go();

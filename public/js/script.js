@@ -1,16 +1,83 @@
 (function(){
+    /*document.querySelector('.structure_lobby').style.display = 'none';
+    document.querySelector('.structure_register_absolute').style.display = 'none';
+    document.querySelector('.structure_game').style.display = 'flex';*/
+
+    var canvas = document.getElementById('tron-canvas');
+    var ctx = canvas.getContext('2d');
     // canvas variables
-    var canvasId = 'tron-canvas';
-    var canvasContext = '2d';
-    var canvasWidth = 500;
-    var canvasHeight = 500;
+    canvas.width = 810;
+    canvas.height = 610;
 
     // board variable
     var boardColor = '#000';
     var squareSize = 10;
-    var lineWidth = '0.5';
+    var lineWidth = 1;
+    /*
+        map[80][60] => colorier des cases
+    */
+    var map = [];
+    let x = 0;
+    while (x < 80)
+    {
+        map[x] = [];
+        let y = 0;
+        while (y < 60)
+        {
+            // map[x][y] = 'rgb('+parseInt(Math.random() * 255)+', '+parseInt(Math.random() * 255)+', '+parseInt(Math.random() * 255)+')';
+            map[x][y] = '#000';
+            y++;
+        }
+        x++;
+    }
+    ctx.fillStyle = "#FFF";
+    ctx.fillRect(0, 0, 810, 610);
+    function draw(map)
+    {
+        let x = 0;
+        while (x < 80)
+        {
+            let y = 0;
 
+            while (y < 60)
+            {
+                ctx.fillStyle = map[x][y];
+                ctx.lineWidth = lineWidth;
+                ctx.fillRect(x * 10 + 5, y * 10 + 5, 10, 10);
+                y++;
+            }
+            x++;
+
+        }
+    }
+    draw(map);
+    const keyMap = {
+        38:"move_up",
+        90:"move_up",
+        40:"move_down",
+        83:"move_down",
+        37:"move_left",
+        81:"move_left",
+        39:"move_right",
+        68:"move_right",
+        32:"use_powerup"
+    };
+    window.addEventListener('keydown', function(e)
+    {
+        if (keyMap[e.keyCode] !== undefined)
+            socket.emit(keyMap[e.keyCode]);
+    });
+    socket.on("game_start", (color) =>
+    {
+        document.querySelector('div.container_users').style.backgroundColor = color;
+    });
+    socket.on("game_map", (map, color) =>// 80*60 cases a chaque déplacement
+    {
+        draw(map);
+    });
+    // Quand vous envoyez move_up au serveur, il renvoie move_up a tous les joueurs
     // red player variables
+    /*
     var redPlayerInfo = {
         color: '#ff0000',
         size: 10,
@@ -44,40 +111,15 @@
             left: 37,
             right: 39
         }
-    };
-
-    /**
-     * A variable to block multiple keydown events in a single animation frame.
-     * @var {boolean} blockMovement
-     */
-    var blockMovement = false;
-
-    var isGameOver = false;
-
-    var canvas = new Canvas(canvasId, canvasContext);
-    canvas.setDimensions(canvasWidth, canvasHeight);
-
-    var board = new Board(squareSize);
-    board.initialize(canvas.ctx, lineWidth, boardColor, canvasWidth, canvasHeight);
-
-    var redPlayer = new Player(redPlayerInfo);
-    redPlayer.initialize(canvas, board);
-
-    var bluePlayer = new Player(bluePlayerInfo);
-    bluePlayer.initialize(canvas, board);
-
-    window.addEventListener('keydown', function(e) {
-        if (!blockMovement) {
-            blockMovement = keyDownEventHandler(e, redPlayer);
-        }
-    }, true);
-
+    };*/
+/*
     window.addEventListener('keydown', function(e) {
         if (!blockMovement) {
             blockMovement = keyDownEventHandler(e, bluePlayer);
         }
-    }, true);
-
+    }, true);*/
+})();
+/*
     redPlayer.animation = setInterval(function() {
         isGameOver = redPlayer.move(canvas, board);
         blockMovement = false;
@@ -95,7 +137,7 @@
             clearInterval(bluePlayer.animation);
         }
     }, bluePlayer.info.speed);
-})();
+})();*/
 
 /*
  *   @function keyDownEventHandler
@@ -105,6 +147,7 @@
  *
  *   @returns {boolean}
  */
+ /*
 function keyDownEventHandler(e, player) {
     console.log(e.keyCode);
     var direction = player.info.currentDirection;
@@ -149,7 +192,7 @@ function keyDownEventHandler(e, player) {
             break;
     }
 }
-
+*/
 /*
  *   @function createMultidimensionalArray
  *
@@ -158,30 +201,3 @@ function keyDownEventHandler(e, player) {
  *
  *   @returns {array[]} array
  */
-function createMultidimensionalArray(dimensions, value) {
-    // Create new array
-    var array = new Array(dimensions[0] || 0);
-    var i = dimensions[0];
-
-    // If dimensions array's length is bigger than 1
-    // we start creating arrays in the array elements with recursions
-    // to achieve multidimensional array
-    if (dimensions.length > 1) {
-        // Remove the first value from the array
-        var args = Array.prototype.slice.call(dimensions, 1);
-        // For each index in the created array create a new array with recursion
-        while(i--) {
-            array[dimensions[0]-1 - i] = createMultidimensionalArray(args, value);
-        }
-        // If there is only one element left in the dimensions array
-        // assign value to each of the new array's elements if value is set as param
-    } else {
-        if (typeof value !== 'undefined') {
-            while(i--) {
-                array[dimensions[0]-1 - i] = value;
-            }
-        }
-    }
-
-    return array;
-}

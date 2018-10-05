@@ -1,6 +1,7 @@
 const uniqid = require('uniqid');
 class Player {
     constructor(socket, info) {
+    	  this.color = 'rgb('+parseInt(Math.random() * 255)+', '+parseInt(Math.random() * 255)+', '+parseInt(Math.random() * 255)+')';
         this.socket = socket;
         this.id = uniqid();
         this.speed = 1;
