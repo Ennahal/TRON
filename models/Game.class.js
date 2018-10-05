@@ -22,18 +22,16 @@ class Game
 		setInterval(()=>
 		{
 			let i = 0;
-			while (i < this.listPlayer.length)
+			while (i < this.listPlayerReady.length)
 			{
-				if (this.listPlayer[i].isAlive)
-					this.listPlayer[i].move(this.map);
-		    if (!this.listPlayer[i].isAlive){
-			    if (this.listPlayer[i].id in this.listLooser === false)
-			      this.listLooser.push(this.listPlayer.splice(i, 1))
-			  }
+				if (this.listPlayerReady[i].isAlive)
+					this.listPlayerReady[i].move(this.map);
+		    	else if (!this.listLooser.contains(this.listPlayerReady[i].id))
+			      	this.listLooser.push(this.listPlayerReady.splice(i, 1));
 				i++;
 			}
 			if(this.listLooser.length == NB_PLAYER - 1) {
-	      player.sendAll("winner", this.listPlayer[0].id + "a gagné")
+	      this.sendAll("winner", this.listPlayerReady[0].login + "a gagné")
       }
 			// Dire a tout que la partie est finie, finir la partie, envoyer le score/podium, etc...
 		}, 100);

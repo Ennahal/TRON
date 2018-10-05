@@ -12,9 +12,9 @@ class UsersApp
 				users:this.list
 			}
 		});
-		this.initSocket();
+		/*this.initSocket();*/
 		this.initForm();
-		this.initStatus();
+		/*this.initStatus();*/
 	}
 	/*initStatus()
 	{
