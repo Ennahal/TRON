@@ -35,7 +35,7 @@ Player.class.js => Player => haut / bas / gauche / droite : droite / gauche + vi
 
 //--------------------------------- ancien index.js
 const uniqid = require('uniqid');// npm install --save uniqid
-const PORT = 3000;
+const PORT = 3142;
 class Server
 {
 	constructor()
