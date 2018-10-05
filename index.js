@@ -50,7 +50,7 @@ class Server
 	joinGame(player, gameType)// gameType : ffa || ftf
 	{
 		// On peut plus juste faire ça :
-		this.games[gameId].join(player);
+		//this.games[gameId].join(player);
 		// Il va falloir trouver la première game qui correspond au type et qui est pas pleine
 		for (var id in this.games)
 		{
