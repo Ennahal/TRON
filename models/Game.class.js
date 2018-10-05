@@ -12,6 +12,7 @@ class Game
 	constructor(player, type)
 	{
 		this.host = player;
+		this.type = type;
 		this.listPlayer = [];
 		this.listPlayerReady = [];
 		this.id = uniqid();
