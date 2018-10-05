@@ -44,7 +44,7 @@ class Game
 				i++;
 			}
 			console.log("send game_map");
- 			this.sendAll("game_map", JSON.stringify(this.map.map));
+ 			this.sendAll("game_map", this.map.map);
  			console.log("send /game_map");
 			/*
 			while (this.playerLive > 1)
