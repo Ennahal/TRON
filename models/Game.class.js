@@ -30,9 +30,8 @@ class Game
 		    else if (!this.listLooser.contains(this.playerLive[i].id))
 			    this.listLooser.push(this.playerLive.splice(i, 1));
 			}
-			if(this.listLooser.length == NB_PLAYER - 1) {
-	      this.sendAll("winner", this.playerLive[0].login + "a gagné")
-      }
+	    this.sendAll("winner", this.playerLive[0].login + "a gagné")
+      
 		}, 100);// VARIABLE => 10 => 100
 		// 1 - Dire a tout que la partie est finie, finir la partie, envoyer le score/podium, etc...
 		// 2- 

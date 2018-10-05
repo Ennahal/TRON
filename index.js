@@ -76,7 +76,7 @@ class Server
 		// Envoyer la liste des games
 		socket.emit("game_list", this.games.map(game => game.id));
 		// Envoyer la liste des joueurs
-		socket.emit("user_list", this.games.map(user => {login:user.login, avatar:user.avatar, id:user.id}));
+		socket.emit("user_list", this.players.map(user => {login:user.login, avatar:user.avatar, id:user.id}));
 		// Rejoindre une partie par son id
 		socket.on("game_join", this.joinGame.bind(this, player));
 	}
