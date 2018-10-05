@@ -106,6 +106,7 @@ class Game
 				i++;
 			}
 		});
+		this.listPlayerReady.push(player);
 		this.gameReady();
 		if (this.listPlayer.length < this.nb_player)
 		{
