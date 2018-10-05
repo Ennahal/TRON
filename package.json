@@ -7,7 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
   },
+<<<<<<< HEAD
   "author": "Shadownest",
+=======
+  "author": "Multiple",
+>>>>>>> 04c279287796b3ab4b9b9d3a57340e8372095084
   "license": "ISC",
   "dependencies": {
     "dust": "^0.3.0",

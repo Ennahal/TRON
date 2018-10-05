@@ -13,9 +13,10 @@
 
 <body>
 
+
     <div class="container_page">
         <div class="containers structure_lobby">
-            <div class="container_rooms">
+            <div class="container_rooms" id="app_chanlist">
                 <div class="chat_list active_chat" v-for="channel in channels">
                     <div class="chat_people">
                         <div class="chat_img"><img src="img/ffa.jpg" alt="ffa"> </div>
@@ -71,7 +72,9 @@
             </div>
         </div>
         <div class="containers structure_game">
-            <div class="container_game"></div>
+            <div class="container_game">
+                <canvas id="tron-canvas"></canvas>
+            </div>
             <div class="container_users">
                     <ul class="userlist" v-for="user in users">
                             <li>
@@ -95,6 +98,10 @@
             </form>
         </div>
     </div>
+    <script src="js/canvas.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/Player.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
 
