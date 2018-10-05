@@ -25,7 +25,7 @@
         while (y < 60)
         {
             // map[x][y] = 'rgb('+parseInt(Math.random() * 255)+', '+parseInt(Math.random() * 255)+', '+parseInt(Math.random() * 255)+')';
-            map[x][y] = '#000';
+            map[x][y] = '';
             y++;
         }
         x++;
@@ -43,7 +43,7 @@
             {
                 ctx.fillStyle = map[x][y];
                 if (map[x][y] !== "")
-                    console.log("draw map > ", map[x][y]);
+                    console.log("draw map ("+x+"/"+y+") > ", map[x][y]);
                 //ctx.lineWidth = lineWidth;
                 ctx.fillRect(x * 10 + 5, y * 10 + 5, 10, 10);
                 y++;
