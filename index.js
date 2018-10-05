@@ -22,8 +22,8 @@ game_list([{id:"", players:""}])
 player_list([{login:"", avatar:""}])
 player_dead
 game_start
-message_ffa({login:"", avatar:"", content:""})
-message_ftf({login:"", avatar:"", content:""})
+message_ffa({date:new Date(), login:"", avatar:"", content:""})
+message_ftf({date:new Date(), login:"", avatar:"", content:""})
 */
 /**
 index.js => Server => io.connection, socket.user_register, socket.game_create, socket.message => le lobby par défaut
@@ -85,6 +85,14 @@ class Server
 		this.io.on('connection', (socket) =>
 		{
 			socket.on('user_register', this.createPlayer.bind(this, socket));
+			
+			socket.on("message_ffa", (content ="") => {
+			  let msg_ffa = {date:new Date(), login:socket.player.login, avatar:socket.player.avatar, content:""}
+
+			})
+			socket.on("message_ftf", (content ="") => {
+			  let msg_ftf = {date:new Date(), login:socket.player.login, avatar:socket.player.avatar, content:""}
+			})
 			/* A VOIR AVEC LE FRONT POUR LES MESSAGES
 			socket.on("message", (channel, content = "") =>
 			{
