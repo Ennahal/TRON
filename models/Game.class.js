@@ -1,40 +1,58 @@
+const Map = require('./models/Game.class.js');
 //Game.class.js => Game => socket.game_join, socket.game_leave, socket.game_ready
 // uniqid pour la Game => socket.game_join_ID
 // creation de l'unique Id
-const NB_PLAYER = 4;
+const NB_PLAYER_FFA = 4;
+const NB_PLAYER_FTF = 2
 const HEIGHT = 80;
 const WIDTH = 60;
 const uniqid = require('uniqid');
 class Game
 {
-	constructor(player)
+	constructor(player, type)
 	{
 		this.host = player;
 		this.listPlayer = [];
 		this.listPlayerReady = [];
 		this.id = uniqid();
+		this.type = type
+		this.nb_player = undefined;
 		this.join(player);
+		this.playerLive = []
 		this.listLooser = [];
 	}
 	go()
 	{
+	  this.listPlayerReady.map(i=> this.playerLive.push(i))
 		// gameloop
 		setInterval(()=>
 		{
-			let i = 0;
-			while (i < this.listPlayerReady.length)
+			while (this.playerLive > 1)
 			{
-				if (this.listPlayerReady[i].isAlive)
-					this.listPlayerReady[i].move(this.map);
-		    	else if (!this.listLooser.contains(this.listPlayerReady[i].id))
-			      	this.listLooser.push(this.listPlayerReady.splice(i, 1));
-				i++;
+			  if (this.playerLive[i].isAlive)
+					this.playerLive[i].move(this.map);
+		    else if (!this.listLooser.contains(this.playerLive[i].id))
+			    this.listLooser.push(this.playerLive.splice(i, 1));
 			}
-			if(this.listLooser.length == NB_PLAYER - 1) {
-	      this.sendAll("winner", this.listPlayerReady[0].login + "a gagné")
+	    this.sendAll("winner", this.playerLive[0].login + "a gagné")
+      
+		}, 100);// VARIABLE => 10 => 100
+		// 1 - Dire a tout que la partie est finie, finir la partie, envoyer le score/podium, etc...
+		/*
+
+      while(this.listLooser.length == 3) {
+          this.listLooser[i];
+          i++;
       }
-			// Dire a tout que la partie est finie, finir la partie, envoyer le score/podium, etc...
-		}, 100);
+    */
+
+		// 2- 
+		// On va pas déplacer 100 fois par seconde les joueurs
+		// 1/10 => déplacement vitesse normale
+		// 1/7 => déplacement rapide
+		// 1/12 => déplacement lent
+		// sur 2 secondes => un rapide va se déplacer 3 fois, un moyen 2 fois, un lent 1 fois
+		// 200 tours de setInterval => 6 tours "utiles", 194 autres tours servent juste à gérer les vitesses différentes
 	}
 	join(player)
 	{
@@ -76,7 +94,12 @@ class Game
 	}
 	gameReady()
 	{
-	  	if (this.listPlayerReady.length == NB_PLAYER)
+	    if(this.type == 'FFA')
+	        this.nb_player = NB_PLAYER_FFA;
+	    else
+	        this.nb_player = NB_PLAYER_FTF;
+
+	  	if (this.listPlayerReady.length == this.nb_player)
 	  	{
 	  		// générer la map
 	  		this.map = new Map(HEIGHT, WIDTH, this.listPlayerReady);
@@ -91,4 +114,4 @@ class Game
 	}
 	
 }
-module.export = Game;
+module.exports = Game;

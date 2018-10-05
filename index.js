@@ -1,7 +1,5 @@
-// Import de la classe
-// const Game = require('models/Game.class.js');
-// Instanciation de l'objet
-// var game = new Game();
+const Player = require('./models/Player.class.js');
+const Game = require('./models/Game.class.js');
 /*
 client => server
 move_left
@@ -19,22 +17,12 @@ message_ftf(content)
 
 server => client
 game_list([{id:"", players:""}])
-player_list([{login:"", avatar:""}])
+user_list([{login:"", avatar:""}])
 player_dead
 game_start
-message_ffa({login:"", avatar:"", content:""})
-message_ftf({login:"", avatar:"", content:""})
+message_ffa({date:new Date(), login:"", avatar:"", content:""})
+message_ftf({date:new Date(), login:"", avatar:"", content:""})
 */
-/**
-index.js => Server => io.connection, socket.user_register, socket.game_create, socket.message => le lobby par défaut
-Game.class.js => Game => socket.game_join, socket.game_leave, socket.game_ready
-// uniqid pour la Game => socket.game_join_ID
-	=> Map.class.js => /!\ [80][60] => map.collide(x, y);
-Player.class.js => Player => haut / bas / gauche / droite : droite / gauche + vitesse up/vitesse down : espace
-**/
-
-//--------------------------------- ancien index.js
-const uniqid = require('uniqid');// npm install --save uniqid
 const PORT = 3142;
 class Server
 {
@@ -48,9 +36,9 @@ class Server
 		this.games = {};
 		this.init();
 	}
-	createGame(player)
+	createGame(player, type)
 	{
-		var game = new Game(player);
+		var game = new Game(player, type);// TFT || FFA
 		this.games[game.id] = game;
 		// uniqid(); => dans Game.constructor
 		// Faire des trucs cools genre new Game :p
@@ -64,8 +52,8 @@ class Server
 		this.games[gameId].join(player);
 	}
 	createPlayer(socket, info)
-	{// const Player = require('models/Player.class.js');
-		var player = new Player(socket, user);
+	{
+		var player = new Player(socket, info);
 		this.players[player.id] = player;
 		console.log("New Player > ", player.login);
 		// Se déconnecter
@@ -73,9 +61,12 @@ class Server
 		// Créer une partie
 		socket.on("game_create", this.createGame.bind(this, player));
 		// Envoyer la liste des games
-		socket.emit("game_list", Object.values(this.games));
+		socket.emit("game_list", Object.keys(this.games));
 		// Envoyer la liste des joueurs
-		socket.emit("player_list", Object.values(this.players));
+		this.io.emit("user_list", Object.values(this.players).map((user) =>
+		{
+			return {login:user.login, avatar:user.avatar, id:user.id};
+		}));
 		// Rejoindre une partie par son id
 		socket.on("game_join", this.joinGame.bind(this, player));
 	}
@@ -85,6 +76,15 @@ class Server
 		this.io.on('connection', (socket) =>
 		{
 			socket.on('user_register', this.createPlayer.bind(this, socket));
+			
+			socket.on("message_ffa", (content ="") => {
+			  let msg_ffa = {date:new Date(), login:socket.player.login, avatar:socket.player.avatar, content:content}
+        this.io.emit("message_ffa", msg_ffa);
+			});
+			socket.on("message_ftf", (content ="") => {
+			  let msg_ftf = {date:new Date(), login:socket.player.login, avatar:socket.player.avatar, content:content}
+			  this.io.emit("message_ftf", msg_ftf)
+			});
 			/* A VOIR AVEC LE FRONT POUR LES MESSAGES
 			socket.on("message", (channel, content = "") =>
 			{

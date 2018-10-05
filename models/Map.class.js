@@ -60,4 +60,4 @@ class Map {
         return false;
     }
 }
-module.export = Map;
+module.exports = Map;
