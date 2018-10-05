@@ -34,12 +34,12 @@ class UsersApp
 			let login = document.querySelectorAll('.structure_register_absolute .register_form input')[0].value;
 			let avatar = document.querySelectorAll('.structure_register_absolute .register_form input')[1].value;
 			// On va cacher le mask de register
-			document.querySelector('.container_mask').style.display = 'none';
+			document.querySelector('.structure_register_absolute').style.display = 'none';
 			// On reset
-			document.querySelectorAll('form.container_form input')[0].value = "";
-			document.querySelectorAll('form.container_form input')[1].value = "";
+			document.querySelectorAll('.structure_register_absolute .register_form input')[0].value = "";
+			document.querySelectorAll('.structure_register_absolute .register_form input')[1].value = "";
 			// On focus l'input du tchat
-			document.querySelector("form.messages_input input").focus();
+			document.querySelector(".type_message .input_msg_write input").focus();
 			// On envoie les datas au serveur
 			this.socket.emit("user_register", {login:login, avatar:avatar});
 			return false;

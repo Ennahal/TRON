@@ -14,30 +14,44 @@ class Game
 		this.listPlayerReady = [];
 		this.id = uniqid();
 		this.join(player);
+		this.playerLive = []
 		this.listLooser = [];
 	}
 	go()
 	{
+	  this.listPlayerReady.map(i=> this.playerLive)
 		// gameloop
 		setInterval(()=>
 		{
-			let i = 0;
-			while (i < this.listPlayerReady.length)
+		  
+			while (this.playerLive > 1)
 			{
-				if (this.listPlayerReady[i].isAlive)
-					this.listPlayerReady[i].move(this.map);
-		    	else if (!this.listLooser.contains(this.listPlayerReady[i].id))
-			      	this.listLooser.push(this.listPlayerReady.splice(i, 1));
-				i++;
+			  
 			}
+			if (this.listPlayerReady[i].isAlive)
+					this.listPlayerReady[i].move(this.map);
+		  else if (!this.listLooser.contains(this.listPlayerReady[i].id))
+			    this.listLooser.push(this.listPlayerReady.splice(i, 1));
 			if(this.listLooser.length == NB_PLAYER - 1) {
 	      this.sendAll("winner", this.listPlayerReady[0].login + "a gagné")
       }
-			// Dire a tout que la partie est finie, finir la partie, envoyer le score/podium, etc...
-		}, 100);
+		}, 100);// VARIABLE => 10 => 100
+		// 1 - Dire a tout que la partie est finie, finir la partie, envoyer le score/podium, etc...
+		// 2- 
+		// On va pas déplacer 100 fois par seconde les joueurs
+		// 1/10 => déplacement vitesse normale
+		// 1/7 => déplacement rapide
+		// 1/12 => déplacement lent
+		// sur 2 secondes => un rapide va se déplacer 3 fois, un moyen 2 fois, un lent 1 fois
+		// 200 tours de setInterval => 6 tours "utiles", 194 autres tours servent juste à gérer les vitesses différentes
 	}
 	join(player)
 	{
+	  
+	  player.socket.on('game_finish', () => {
+	     
+	  });
+	  
 		player.socket.on('game_leave', () =>
 		{
 			let i = 0
@@ -91,4 +105,4 @@ class Game
 	}
 	
 }
-module.export = Game;
+module.exports = Game;

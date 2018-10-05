@@ -1,3 +1,4 @@
+const Player = require('./models/Player.class.js');
 // Import de la classe
 // const Game = require('models/Game.class.js');
 // Instanciation de l'objet
@@ -19,7 +20,7 @@ message_ftf(content)
 
 server => client
 game_list([{id:"", players:""}])
-player_list([{login:"", avatar:""}])
+user_list([{login:"", avatar:""}])
 player_dead
 game_start
 message_ffa({date:new Date(), login:"", avatar:"", content:""})
@@ -34,7 +35,6 @@ Player.class.js => Player => haut / bas / gauche / droite : droite / gauche + vi
 **/
 
 //--------------------------------- ancien index.js
-const uniqid = require('uniqid');// npm install --save uniqid
 const PORT = 3142;
 class Server
 {
@@ -44,6 +44,7 @@ class Server
 		this.app = this.express();
 		this.http = require('http').Server(this.app);
 		this.io = require('socket.io')(this.http);
+		this.rooms
 		this.players = {};
 		this.games = {};
 		this.init();
@@ -65,7 +66,7 @@ class Server
 	}
 	createPlayer(socket, info)
 	{// const Player = require('models/Player.class.js');
-		var player = new Player(socket, user);
+		var player = new Player(socket, info);
 		this.players[player.id] = player;
 		console.log("New Player > ", player.login);
 		// Se déconnecter
@@ -75,7 +76,7 @@ class Server
 		// Envoyer la liste des games
 		socket.emit("game_list", Object.values(this.games));
 		// Envoyer la liste des joueurs
-		socket.emit("player_list", Object.values(this.players));
+		socket.emit("user_list", Object.values(this.players));
 		// Rejoindre une partie par son id
 		socket.on("game_join", this.joinGame.bind(this, player));
 	}
@@ -87,12 +88,12 @@ class Server
 			socket.on('user_register', this.createPlayer.bind(this, socket));
 			
 			socket.on("message_ffa", (content ="") => {
-			  let msg_ffa = {date:new Date(), login:socket.player.login, avatar:socket.player.avatar, content:""}
-
-			})
+			  let msg_ffa = {date:new Date(), login:socket.player.login, avatar:socket.player.avatar, content:content}
+        this.io.to()
+			});
 			socket.on("message_ftf", (content ="") => {
-			  let msg_ftf = {date:new Date(), login:socket.player.login, avatar:socket.player.avatar, content:""}
-			})
+			  let msg_ftf = {date:new Date(), login:socket.player.login, avatar:socket.player.avatar, content:content}
+			});
 			/* A VOIR AVEC LE FRONT POUR LES MESSAGES
 			socket.on("message", (channel, content = "") =>
 			{
