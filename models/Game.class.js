@@ -15,7 +15,7 @@ class Game
 		this.listPlayer = [];
 		this.listPlayerReady = [];
 		this.id = uniqid();
-		this.nb_player = verifType(type);
+		this.nb_player = this.verifType(type);
 		this.join(player);
 		this.playerLive = []
 		this.listLooser = [];
@@ -59,6 +59,7 @@ class Game
     }
     this.scoreTab.push({"player" : this.playerLive.splice(0,1),"score":4});
     this.sendAll("score",this.scoreTab);
+    this.listPlayer =[];
 	}
 	
 	verifType(type)
