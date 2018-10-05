@@ -54,11 +54,11 @@ class Game
 	gameFinish(){
 	  var i = 0 ;
 	  while(this.scoreTab.length == this.nb_player - 1 ){
-      this.scoreTab.push({"player" : this.listLooser.splice(0, 1),"score": i})
+      this.scoreTab.push({"player" : this.listLooser.splice(0, 1),"score": i});
       i++;
     }
-    this.scoreTab.push({"player" : this.playerLive.splice(0,1),"score":4})
-    this.sendAll("score",this.scoreTab)
+    this.scoreTab.push({"player" : this.playerLive.splice(0,1),"score":4});
+    this.sendAll("score",this.scoreTab);
 	}
 	
 	verifType(type)
