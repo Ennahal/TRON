@@ -12,7 +12,7 @@ class UsersApp
 				users:this.list
 			}
 		});
-		/*this.initSocket();*/
+		this.initSocket();
 		this.initForm();
 		/*this.initStatus();*/
 	}
@@ -77,8 +77,15 @@ class UsersApp
 		// });
 		this.socket.on('user_list', (users) => 
 		{
-			console.log(users[0].login);
-			console.log(users[0].avatar);
+			// console.log(users[0].login);
+			// console.log(users[0].avatar);
+			this.list.splice(0, this.list.length);
+			var i = 0;
+			while (i < users.length)
+			{
+				this.list.push(users[i]);
+				i++;
+			}
 		});
 		// // A la connexion d'un nouvel utilisateur
 		// this.socket.on('user_connected', (user, list, message) =>
