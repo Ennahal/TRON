@@ -33,7 +33,7 @@ class Game
 				i++;
 			}
 			if(this.listLooser.length == NB_PLAYER - 1) {
-	      player.sendAll("winner",player.id + "a gagné")
+	      player.sendAll("winner", this.listPlayer[0].id + "a gagné")
       }
     
 			// listPlayer mort => listLooser 
