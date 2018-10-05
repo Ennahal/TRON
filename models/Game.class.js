@@ -44,7 +44,7 @@ class Game
 				i++;
 			}
 			console.log("send game_map");
- 			this.sendAll("game_map", this.map.map);
+ 			this.sendAll("game_map", JSON.stringify(this.map.map));
  			console.log("send /game_map");
 			/*
 			while (this.playerLive > 1)
@@ -130,11 +130,12 @@ class Game
 	sendAll(type, content)
 	{
 		 let i = 0;
-        while (i < this.listPlayerReady.length) {
+        while (i < this.listPlayerReady.length)
+        {
             this.listPlayerReady[i].socket.emit(type, content);
             i++;
-      } 
-    	//this.listPlayerReady.map(i => i.socket.emit(type, content));
+      	} 
+	//this.listPlayerReady.map(i => i.socket.emit(type, content));
 	}
 	gameReady()
 	{
