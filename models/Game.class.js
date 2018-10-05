@@ -54,7 +54,7 @@ class Game
 	{
 	  
 	  player.socket.on('game_finish', () => {
-	     for(let i = 0;)
+	     //for(let i = 0; i < this.listLooser.)
 	  });
 	  
 		player.socket.on('game_leave', () =>
