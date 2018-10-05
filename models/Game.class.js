@@ -106,7 +106,7 @@ class Game
 				i++;
 			}
 		});
-		gameReady();
+		this.gameReady();
 		if (this.listPlayer.length < this.nb_player)
 		{
 			this.listPlayer.push(player);
