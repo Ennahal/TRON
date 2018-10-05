@@ -42,6 +42,7 @@ class Player {
         }
     }
     move(map) {
+    	console.log(this.login, "move");
         // this.direction + this.speed
         var alive = undefined;
         if (this.direction == "top")
@@ -52,10 +53,17 @@ class Player {
             alive = map.move(this, this.x, this.y + 1);
         else if (this.direction == "left")
             alive = map.move(this, this.x - 1, this.y);
-        if (!alive) {
+        if (!alive)
+        {
             this.isAlive = false;
             this.socket.emit("player_dead");
         }
+        else
+        {
+        	this.x = alive.x;
+        	this.y = alive.y;
+        }
+    	return alive;
     }
     speed(speeding) {
         if (speeding == 'up')

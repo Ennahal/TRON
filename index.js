@@ -54,10 +54,8 @@ class Server
 		// Il va falloir trouver la première game qui correspond au type et qui est pas pleine
 		for (var id in this.games)
 		{
-			console.log(id, this.games[id]);
 			if (this.games[id].type == gameType.toUpperCase() && !this.games[id].isFull())
 			{
-				console.log("Game joined");
 				return this.games[id].join(player);
 			}
 		}

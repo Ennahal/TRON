@@ -21,7 +21,6 @@ class Game
 		this.playerLive = [];
 		this.listLooser = [];
 		this.scoreTab = [];
-		console.log("New GAME > ", type);
 	}
 	go()
 	{
@@ -29,16 +28,17 @@ class Game
 		// gameloop
 		var interv = setInterval(()=>
 		{
-			let i = 0;
+			var diff = [];
+			var i = 0;
 			while (i < this.playerLive.length)
 			{
-				if (this.playerLive[i].isAlive)
-				{
-					this.playerLive[i].move(this.map);
-				}
+				/*if (this.playerLive[i].isAlive)
+				{*/
+					diff.push(this.playerLive[i].move(this.map));
+				//}
 				i++;
 			}
- 			this.sendAll("game_map", this.map.map);
+ 			this.sendAll("game_diff", diff);
 			/*
 			while (this.playerLive > 1)
 			{
@@ -132,7 +132,6 @@ class Game
 	}
 	gameReady()
 	{
-		console.log(this.listPlayerReady.length, this.nb_player);
 	  	if (this.listPlayerReady.length == this.nb_player)
 	  	{
 	  		// générer la map
@@ -141,11 +140,10 @@ class Game
 			let i = 0;
 			while (i < this.listPlayerReady.length)
 			{
-				this.listPlayerReady[i].socket.emit("game_start", this.listPlayerReady[i].color);
+				this.listPlayerReady[i].socket.emit("game_start", this.listPlayerReady[i].color, this.map.map);
 				i++;
 			}
 	  		//this.sendAll("game_start");
-			console.log("before");
 	  		setTimeout(() =>
 	  		{
 				this.go();

@@ -6,8 +6,8 @@
     var canvas = document.getElementById('tron-canvas');
     var ctx = canvas.getContext('2d');
     // canvas variables
-    canvas.width = 810;
-    canvas.height = 610;
+    canvas.width = 1000;
+    canvas.height = 1000;
 
     // board variable
     var boardColor = '#000';
@@ -32,18 +32,38 @@
     }
     ctx.fillStyle = "#FFF";
     ctx.fillRect(0, 0, 810, 610);
+    function drawdiff(diff)
+    {
+        let i = 0;
+        while (i < diff.length)
+        {
+            if (diff[i])
+            {
+                let x = diff[i].x;
+                let y = diff[i].y;
+                let color = diff[i].color;
+                ctx.fillStyle = color;
+                ctx.fillRect(x * 10 + 5, y * 10 + 5, 10, 10);
+                map[x][y] = color;
+            }
+            i++;
+        }
+    }
     function draw(map)
     {
         ctx.clearRect(0, 0, 810, 610);
+        ctx.fillStyle = "#FFF";
+        ctx.fillRect(0, 0, 810, 610);
         let x = 0;
-        while (x < 80)
+        while (x < map.length)
         {
             let y = 0;
-            while (y < 60)
+            while (y < map[x].length)
             {
-                ctx.fillStyle = map[x][y];
-                if (map[x][y] !== "")
-                    console.log("draw map ("+x+"/"+y+") > ", map[x][y]);
+                if (map[x][y])
+                    ctx.fillStyle = map[x][y];
+                else
+                    ctx.fillStyle = "#FFF";
                 //ctx.lineWidth = lineWidth;
                 ctx.fillRect(x * 10 + 5, y * 10 + 5, 10, 10);
                 y++;
@@ -69,13 +89,14 @@
         if (keyMap[e.keyCode] !== undefined)
             socket.emit(keyMap[e.keyCode]);
     });
-    socket.on("game_start", (color) =>
-    {
-        document.querySelector('div.container_users').style.backgroundColor = color;
-    });
-    socket.on("game_map", (map, color) =>// 80*60 cases a chaque déplacement
+    socket.on("game_start", (color, map) =>
     {
         draw(map);
+        document.querySelector('div.container_users').style.background = color;
+    });
+    socket.on("game_diff", (diff) =>
+    {
+        drawdiff(diff);
     });
     // Quand vous envoyez move_up au serveur, il renvoie move_up a tous les joueurs
     // red player variables
