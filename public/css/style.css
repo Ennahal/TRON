@@ -61,6 +61,7 @@ body, html{
     flex-direction: row;
     flex-wrap: nowrap;
     height: 100vh;
+    box-sizing: border-box;
 }
 .container_users {
     width: 20%;
@@ -78,6 +79,11 @@ body, html{
     width: 80%;
     background-color: black;
 }
+#tron-canvas {
+	display: block;
+	margin: 0 auto;
+}
+
 /* ******************************* */
 /*           REGISTER FORM         */
 /* ******************************* */
