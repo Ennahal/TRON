@@ -13,8 +13,10 @@ class ChannelsApp{
 			{
 				select: (channel) =>
 				{
-					this.socket.emit('channel_join', channel.name);
-					messagesApp.loadFromChannel(channel.name);
+					this.socket.emit('game_join', channel);
+					// messagesApp.loadFromChannel(channel);
+					document.querySelector('.structure_lobby').style.display = 'none';
+					document.querySelector('.structure_game').style.display = 'flex';
 				}
 			}
 		});

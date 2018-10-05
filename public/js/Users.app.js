@@ -87,6 +87,10 @@ class UsersApp
 				i++;
 			}
 		});
+		// this.socket.on('game_list', () => 
+		// {
+
+		// });
 		// // A la connexion d'un nouvel utilisateur
 		// this.socket.on('user_connected', (user, list, message) =>
 		// {

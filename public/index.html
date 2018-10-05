@@ -23,19 +23,19 @@
     <div class="container_page">
         <div class="containers structure_lobby">
             <div class="container_rooms" id="app_chanlist">
-                <div class="chat_list active_chat" v-for="channel in channels">
-                    <div class="chat_people">
+                <div class="chat_list active_chat">
+                    <div v-for="channel in channels" v-on:click="select(channel)" class="chat_people">
                         <div class="chat_img"><img src="img/ffa.jpg" alt="ffa"> </div>
                         <div class="chat_ib" id="tone">
-                            <div v-on:click="select(channel)">FFA (0)</div>
+                            <div>{{channel}} (0)</div>
                         </div>
                     </div>
-                    <div class="chat_people">
+                    <!-- <div class="chat_people">
                         <div class="chat_img"><img id="imgOvO" src="img/1v1.png" alt="duel"> </div>
                         <div class="chat_ib" id="ttwo">
                             <div v-on:click="select(channel)">Duel (0)</div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="container_chat">
