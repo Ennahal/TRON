@@ -37,7 +37,8 @@ class Game
 		/*
 
       while(this.listLooser.length == 3) {
-          On fait appraitre la liste des joueurs du 1er au 4ème
+          this.listLooser[i];
+          i++;
       }
     */
 
@@ -53,7 +54,7 @@ class Game
 	{
 	  
 	  player.socket.on('game_finish', () => {
-	     
+	     for(let i = 0;)
 	  });
 	  
 		player.socket.on('game_leave', () =>

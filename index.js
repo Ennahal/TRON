@@ -1,8 +1,5 @@
 const Player = require('./models/Player.class.js');
-// Import de la classe
-// const Game = require('models/Game.class.js');
-// Instanciation de l'objet
-// var game = new Game();
+const Game = require('./models/Game.class.js');
 /*
 client => server
 move_left
@@ -26,15 +23,6 @@ game_start
 message_ffa({date:new Date(), login:"", avatar:"", content:""})
 message_ftf({date:new Date(), login:"", avatar:"", content:""})
 */
-/**
-index.js => Server => io.connection, socket.user_register, socket.game_create, socket.message => le lobby par défaut
-Game.class.js => Game => socket.game_join, socket.game_leave, socket.game_ready
-// uniqid pour la Game => socket.game_join_ID
-	=> Map.class.js => /!\ [80][60] => map.collide(x, y);
-Player.class.js => Player => haut / bas / gauche / droite : droite / gauche + vitesse up/vitesse down : espace
-**/
-
-//--------------------------------- ancien index.js
 const PORT = 3142;
 class Server
 {
@@ -44,7 +32,7 @@ class Server
 		this.app = this.express();
 		this.http = require('http').Server(this.app);
 		this.io = require('socket.io')(this.http);
-		this.rooms = [] ;
+		//this.rooms = [] ;
 		this.players = {};
 		this.games = {};
 		this.init();
@@ -76,7 +64,7 @@ class Server
 		// Envoyer la liste des games
 		socket.emit("game_list", Object.keys(this.games));
 		// Envoyer la liste des joueurs
-		socket.emit("user_list", this.players.map((user) =>
+		socket.emit("user_list", Object.values(this.players).map((user) =>
 		{
 			return {login:user.login, avatar:user.avatar, id:user.id};
 		}));
