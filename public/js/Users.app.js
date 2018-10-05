@@ -12,7 +12,7 @@ class UsersApp
 				users:this.list
 			}
 		});
-		/*this.initSocket();*/
+		this.initSocket();
 		this.initForm();
 		/*this.initStatus();*/
 	}
@@ -39,11 +39,7 @@ class UsersApp
 			document.querySelectorAll('.structure_register_absolute .register_form input')[0].value = "";
 			document.querySelectorAll('.structure_register_absolute .register_form input')[1].value = "";
 			// On focus l'input du tchat
-<<<<<<< HEAD
 			document.querySelector(".type_msg .input_msg_write input").focus();
-=======
-			document.querySelector(".type_message .input_msg_write input").focus();
->>>>>>> 8fb0b3b1837d446f242f6ccd29029823384e66d6
 			// On envoie les datas au serveur
 			this.socket.emit("user_register", {login:login, avatar:avatar});
 			return false;
@@ -81,8 +77,15 @@ class UsersApp
 		// });
 		this.socket.on('user_list', (users) => 
 		{
-			console.log(users[0].login);
-			console.log(users[0].avatar);
+			// console.log(users[0].login);
+			// console.log(users[0].avatar);
+			this.list.splice(0, this.list.length);
+			var i = 0;
+			while (i < users.length)
+			{
+				this.list.push(users[i]);
+				i++;
+			}
 		});
 		// // A la connexion d'un nouvel utilisateur
 		// this.socket.on('user_connected', (user, list, message) =>
