@@ -25,15 +25,22 @@ class Game
 	}
 	go()
 	{
-	  this.listPlayerReady.map(i=> this.playerLive.push(i))
+		console.log("go");
+	  this.listPlayerReady.map(i=> this.playerLive.push(i));
+		console.log("gameloop");
 		// gameloop
 		var interv = setInterval(()=>
 		{
 			let i = 0;
+			console.log("playerLive > ", this.playerLive.length);
 			while (i < this.playerLive.length)
 			{
 				if (this.playerLive[i].isAlive)
+				{
+					console.log("player move");
 					this.playerLive[i].move(this.map);
+					console.log("player /move");
+				}
 				i++;
 			}
  			this.sendAll("game_map", this.map.map);
@@ -108,7 +115,7 @@ class Game
 		});
 		this.listPlayerReady.push(player);
 		this.gameReady();
-		if (this.listPlayer.length < this.nb_player)
+		/*if (this.listPlayer.length < this.nb_player)
 		{
 			this.listPlayer.push(player);
 			player.socket.once('game_ready', () =>
@@ -116,7 +123,7 @@ class Game
 				this.listPlayerReady.push(player);
 				this.gameReady();
 			});// game_ready, game_start...
-		}
+		}*/
 	}
 	sendAll(type, content)
 	{
@@ -142,6 +149,7 @@ class Game
 				i++;
 			}
 	  		//this.sendAll("game_start");
+			console.log("before");
 	  		setTimeout(() =>
 	  		{
 				this.go();
