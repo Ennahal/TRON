@@ -35,9 +35,6 @@ class Game
 			if(this.listLooser.length == NB_PLAYER - 1) {
 	      player.sendAll("winner", this.listPlayer[0].id + "a gagné")
       }
-    
-			// listPlayer mort => listLooser 
-			// listLooser == nbPLayer - 1 => emit (bravo)
 			// Dire a tout que la partie est finie, finir la partie, envoyer le score/podium, etc...
 		}, 100);
 	}
