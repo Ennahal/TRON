@@ -42,6 +42,8 @@
             while (y < 60)
             {
                 ctx.fillStyle = map[x][y];
+                if (map[x][y] !== "")
+                    console.log("draw map > ", map[x][y]);
                 //ctx.lineWidth = lineWidth;
                 ctx.fillRect(x * 10 + 5, y * 10 + 5, 10, 10);
                 y++;

@@ -27,9 +27,9 @@ class Map {
     initPlayerPosition() {
         let defaultCoords = [
             [10, 10, "right"],
-            [10, this.width - 10, "up"],
+            [10, this.width - 10, "down"],
             [this.height - 10, 10, "left"],
-            [this.height - 10, this.width - 10, "down"]
+            [this.height - 10, this.width - 10, "up"]
         ];
         let i = 0;
         while (i < this.players.length) {
