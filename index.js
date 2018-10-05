@@ -23,7 +23,7 @@ game_start
 message_ffa({date:new Date(), login:"", avatar:"", content:""})
 message_ftf({date:new Date(), login:"", avatar:"", content:""})
 */
-const PORT = 3142;
+const PORT = 3143;
 class Server
 {
 	constructor()
