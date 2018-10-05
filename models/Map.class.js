@@ -17,7 +17,7 @@ class Map {
     {
         if (this.testXY(x, y)) {
             // x, y valides
-            this.map[x][y] = player;
+            this.map[x][y] = player.color;
             return true;
         }
         return false;
@@ -35,7 +35,7 @@ class Map {
             let y = defaultCoords[i][1];
             let dir = defaultCoords[i][2];
             this.players[i].initPosition(x, y, dir);
-            this.map[x][y] = this.players[i];
+            this.map[x][y] = this.players[i].color;
             i++;
         }
     }
