@@ -1,22 +1,24 @@
 {
-  "name": "live_pro04_tchat",
-  "version": "1.0.0",
+  "name": "tron",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-<<<<<<< HEAD
-  "author": "Shadownest",
-=======
-  "author": "Multiple",
->>>>>>> 04c279287796b3ab4b9b9d3a57340e8372095084
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ennahal/TRON.git"
+  },
+  "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ennahal/TRON/issues"
+  },
+  "homepage": "https://github.com/Ennahal/TRON#readme",
   "dependencies": {
-    "dust": "^0.3.0",
     "express": "^4.16.3",
-    "nodemon": "^1.18.4",
-    "socket.io": "^2.1.1"
+    "socket.io": "^2.1.1",
+    "uniqid": "^5.0.3"
   }
 }
