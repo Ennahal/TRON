@@ -66,9 +66,9 @@ class Player {
     initsocket() {
         this.socket.on('move_left', () => this.changeDirection('left'))
         this.socket.on('move_right', () => this.changeDirection('right'))
-        this.socket.on('move_up', () => this.speed('up'))
-        this.socket.on('move_down', () => this.speed('down'))
-        this.socket.on('use_powerUp', () => this.useItem())
+        //this.socket.on('move_up', () => this.speed('up'))
+        //this.socket.on('move_down', () => this.speed('down'))
+        //this.socket.on('use_powerUp', () => this.useItem())
     }
 
     useItem() {

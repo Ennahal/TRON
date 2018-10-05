@@ -54,8 +54,11 @@ class Server
 		// Il va falloir trouver la première game qui correspond au type et qui est pas pleine
 		for (var id in this.games)
 		{
-			if (this.games[id].type == gameType && !this.games[id].isFull())
+			if (this.games[id].type == gameType.toUpperCase() && !this.games[id].isFull())
+			{
+				console.log("Game joined");
 				return this.games[id].join(player);
+			}
 		}
 		// Sinon on en créer une
 		return this.createGame(player, gameType);
@@ -68,7 +71,7 @@ class Server
 		// Se déconnecter
 		socket.on("disconnect", this.removePlayer.bind(this, player));
 		// Créer une partie
-		socket.on("game_create", this.createGame.bind(this, player));
+		//socket.on("game_create", this.createGame.bind(this, player));
 		// Envoyer la liste des games
 		this.io.emit("game_list", Object.keys(this.games));
 		// Envoyer la liste des joueurs
