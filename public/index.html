@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css?family=Chakra+Petch:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="script.js"></script>
-	<title>3WA TRON</title>
+    <title>3WA TRON</title>
 </head>
 
 <body>
@@ -17,7 +17,22 @@
         <div class="containers structure_lobby">
             <div class="container_rooms"></div>
             <div class="container_chat"></div>
-            <div class="container_users"></div>
+            <div class="container_users">
+                <ul class="userlist" v-for="user in users">
+                    <li>
+                        
+                        <img class="user_img" v-bind:src="user.avatar" v-bind:alt="user.login" src="https://farm7.staticflickr.com/6008/5994447558_cc97642f53_b.jpg">
+                        <span>kenjy</span>
+                    </li> 
+                </ul>
+                <ul class="userlist" v-for="user in users">
+                    <li>
+                        
+                        <img class="user_img" v-bind:src="user.avatar" v-bind:alt="user.login" src="https://farm7.staticflickr.com/6008/5994447558_cc97642f53_b.jpg">
+                        <span>kenjy</span>
+                    </li> 
+                </ul>
+            </div>
         </div>
         <div class="containers structure_game">
             <div class="container_game"></div>
