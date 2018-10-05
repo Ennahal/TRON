@@ -51,7 +51,7 @@ class Game
 	      		gameFinish();
 			}*/
       
-		}, 500);// VARIABLE => 10 => 100
+		}, 100);// VARIABLE => 10 => 100
 		// 1 - Dire a tout que la partie est finie, finir la partie, envoyer le score/podium, etc...
 		
 
