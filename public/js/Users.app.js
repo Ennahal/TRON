@@ -34,82 +34,85 @@ class UsersApp
 			let login = document.querySelectorAll('.structure_register_absolute .register_form input')[0].value;
 			let avatar = document.querySelectorAll('.structure_register_absolute .register_form input')[1].value;
 			// On va cacher le mask de register
-			document.querySelector('.container_mask').style.display = 'none';
+			document.querySelector('.structure_register_absolute').style.display = 'none';
 			// On reset
-			document.querySelectorAll('form.container_form input')[0].value = "";
-			document.querySelectorAll('form.container_form input')[1].value = "";
+			document.querySelectorAll('.structure_register_absolute .register_form input')[0].value = "";
+			document.querySelectorAll('.structure_register_absolute .register_form input')[1].value = "";
 			// On focus l'input du tchat
-			document.querySelector("form.messages_input input").focus();
+			document.querySelector(".type_msg .input_msg_write input").focus();
 			// On envoie les datas au serveur
 			this.socket.emit("user_register", {login:login, avatar:avatar});
 			return false;
 		});
 	}
-/*	initSocket()
+	initSocket()
 	{
-		this.socket.on('user_writing', (user) =>
+		// this.socket.on('user_writing', (user) =>
+		// {
+		// 	var i = 0;
+		// 	while (i < this.list.length)
+		// 	{
+		// 		if (this.list[i].login == user.login)
+		// 		{
+		// 			//console.log(user.login+" is writing");
+		// 			Vue.set(this.app.users, i, user);
+		// 			return;
+		// 		}
+		// 		i++;
+		// 	}
+		// });
+		// this.socket.on('user_resting', (user) =>
+		// {
+		// 	var i = 0;
+		// 	while (i < this.list.length)
+		// 	{
+		// 		if (this.list[i].login == user.login)
+		// 		{
+		// 			//console.log(user.login+" is resting");
+		// 			Vue.set(this.app.users, i, user);
+		// 			return;
+		// 		}
+		// 		i++;
+		// 	}
+		// });
+		this.socket.on('user_list', (users) => 
 		{
-			var i = 0;
-			while (i < this.list.length)
-			{
-				if (this.list[i].login == user.login)
-				{
-					//console.log(user.login+" is writing");
-					Vue.set(this.app.users, i, user);
-					return;
-				}
-				i++;
-			}
+			console.log(users[0].login);
+			console.log(users[0].avatar);
 		});
-		this.socket.on('user_resting', (user) =>
-		{
-			var i = 0;
-			while (i < this.list.length)
-			{
-				if (this.list[i].login == user.login)
-				{
-					//console.log(user.login+" is resting");
-					Vue.set(this.app.users, i, user);
-					return;
-				}
-				i++;
-			}
-		});
-		// A la connexion d'un nouvel utilisateur
-		this.socket.on('user_connected', (user, list, message) =>
-		{
-			// Debug
-			speak("Un nouvel utilisateur s'est connecté");
-			console.log("Bonjour nouvel utilisateur > ", user);
-			// Ajouter un message pour prévenir de l'arrivé de user
-			// {date:new Date(), content:content, login:socket.user.login, avatar:socket.user.avatar}
-			messagesApp.list.push(message);
-			// On doit remplir notre this.list avec la nouvelle liste des utilisateurs SANS perdre le pointeur
-			// On vide le tableau SANS changer le pointeur
-			this.list.splice(0, this.list.length);
-			// On le rempli au fur et à mesure SANS changer le pointeur
-			var i = 0;
-			while (i < list.length)
-			{
-				this.list.push(list[i]);
-				i++;
-			}
-		});
+		// // A la connexion d'un nouvel utilisateur
+		// this.socket.on('user_connected', (user, list, message) =>
+		// {
+		// 	// Debug
+		// 	console.log("Bonjour nouvel utilisateur > ", user);
+		// 	// Ajouter un message pour prévenir de l'arrivé de user
+		// 	// {date:new Date(), content:content, login:socket.user.login, avatar:socket.user.avatar}
+		// 	messagesApp.list.push(message);
+		// 	// On doit remplir notre this.list avec la nouvelle liste des utilisateurs SANS perdre le pointeur
+		// 	// On vide le tableau SANS changer le pointeur
+		// 	this.list.splice(0, this.list.length);
+		// 	// On le rempli au fur et à mesure SANS changer le pointeur
+		// 	var i = 0;
+		// 	while (i < list.length)
+		// 	{
+		// 		this.list.push(list[i]);
+		// 		i++;
+		// 	}
+		// });
 		// A la déconnexion d'un utilisateur
-		this.socket.on('user_disconnected', (user, list, message) =>
-		{
-			speak("Un utilisateur s'est déconnecté");
-			console.log("Au revoir utilisateur > ", user);
-			messagesApp.list.push(message);
-			this.list.splice(0, this.list.length);
-			var i = 0;
-			while (i < list.length)
-			{
-				this.list.push(list[i]);
-				i++;
-			}
-		});
-	}*/
+		// this.socket.on('user_disconnected', (user, list, message) =>
+		// {
+		// 	console.log("Au revoir utilisateur > ", user);
+		// 	messagesApp.list.push(message);
+		// 	this.list.splice(0, this.list.length);
+		// 	var i = 0;
+		// 	while (i < list.length)
+		// 	{
+		// 		this.list.push(list[i]);
+		// 		i++;
+		// 	}
+		// });
+	}
 }
 // 6 : this.list = []; // il est partagé avec les data de vuejs
 // 34 : list => il a son propre pointeur en mémoire

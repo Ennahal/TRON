@@ -39,15 +39,15 @@
                 </div>
             </div>
             <div class="container_chat">
-                <div class="mesgs" id="app_msglist">
+                <div class="mesgs" id="app_msglist" v-for='message in messages'>
                     <div class="msg_history">
                         <div class="incoming_msg">
                             <div class="incoming_msg_img">
-                                <img src="https://cdn.freebiesupply.com/logos/large/2x/tron-logo-png-transparent.png" alt="tron-message">
+                                <img v-bind:src="user.avatar" alt="tron-message">
                             </div>
                             <div class="received_msg">
                                 <div class="received_withd_msg">
-                                    <p>contenu du message</p>
+                                    <p></p>
                                     <span class="time_date"> date / utilisateur</span>
                                 </div>
                             </div>
@@ -62,17 +62,11 @@
                     </form>
                 </div>
             </div>
-            <div class="container_users">
+            <div id="app_userlist"  class="container_users">
                 <ul class="userlist" v-for="user in users">
                     <li>
-                        <img class="user_img" v-bind:src="user.avatar" v-bind:alt="user.login" src="https://farm7.staticflickr.com/6008/5994447558_cc97642f53_b.jpg">
-                        <span>kenjy</span>
-                    </li> 
-                </ul>
-                <ul class="userlist" v-for="user in users">
-                    <li>
-                        <img class="user_img" v-bind:src="user.avatar" v-bind:alt="user.login" src="https://farm7.staticflickr.com/6008/5994447558_cc97642f53_b.jpg">
-                        <span>kenjy</span>
+                        <img class="user_img" v-bind:src="user.avatar" v-bind:alt="user.login">
+                        <span>{{user.login}}</span>
                     </li> 
                 </ul>
             </div>

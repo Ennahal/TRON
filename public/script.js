@@ -7,6 +7,6 @@ Vue.filter('formatDate', (value) => moment(value).format('HH:mm'));
 var socket = io("//pixelsass.fr:3142");/*url:port*/
 // Création des apps vuejs (Messages, Channels, Users)
 
-var messagesApp = new MessagesApp(socket);
+// var messagesApp = new MessagesApp(socket);
 //var channelsApp = new ChannelsApp(socket);
 var usersApp = new UsersApp(socket);

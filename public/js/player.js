@@ -55,7 +55,7 @@ move(canvas, board) {
 
     // Check if the new head is on an obsticle - GAME OVER
     if (hasSnakeHitXWall || hasSnakeHitYWall || board.map[newHead.x / this.info.size][newHead.y / this.info.size]) {
-        alert(this.info.color + ' player lose!');
+        // alert(this.info.color + ' player lose!');
 
         return true;
     }
