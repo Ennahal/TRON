@@ -15,8 +15,7 @@ class Game
 		this.listPlayer = [];
 		this.listPlayerReady = [];
 		this.id = uniqid();
-		this.type = type
-		this.nb_player = undefined;
+		this.nb_player = verifType(type);
 		this.join(player);
 		this.playerLive = []
 		this.listLooser = [];
@@ -40,13 +39,9 @@ class Game
       
 		}, 100);// VARIABLE => 10 => 100
 		// 1 - Dire a tout que la partie est finie, finir la partie, envoyer le score/podium, etc...
-		
-
-/*while(this.listLooser.length == 3) {
-          var tabthis.listLooser[i];
-          i++;
-      }*/
-  
+		if(this.listLooser.length == 3){
+      gameFinish();
+		}
 
 		// 2- 
 		// On va pas déplacer 100 fois par seconde les joueurs
@@ -55,13 +50,32 @@ class Game
 		// 1/12 => déplacement lent
 		// sur 2 secondes => un rapide va se déplacer 3 fois, un moyen 2 fois, un lent 1 fois
 		// 200 tours de setInterval => 6 tours "utiles", 194 autres tours servent juste à gérer les vitesses différentes
-		/*
-		if()
-		  setInterval(() => {
-		    this.playerLive[i].move(this.map)
-		  }),200)
-		*/
 	}
+	gameFinish(){
+	  var i = 0 ;
+	  while(this.scoreTab.length == this.nb_player - 1 ){
+      this.scoreTab.push({"player" : this.listLooser.splice(0, 1),"score": i})
+      i++;
+    }
+    this.scoreTab.push({"player" : this.playerLive.splice(0,1),"score":4})
+    this.sendAll("score",this.scoreTab)
+	}
+	
+	verifType(type)
+	{
+	  if(type == 'FFA')
+	    return NB_PLAYER_FFA
+	  else
+	    return NB_PLAYER_FTF
+	}
+	
+	isFull()
+	{
+	  if(this.listPlayerReady == this.nb_player)
+	      return true
+	  return false
+	}
+	
 	join(player)
 	{
 		player.socket.on('game_leave', () =>
@@ -81,7 +95,7 @@ class Game
 				i++;
 			}
 		});
-		if (this.listPlayer.length < NB_PLAYER)
+		if (this.listPlayer.length < this.nb_player)
 		{
 			this.listPlayer.push(player);
 			player.socket.once('game_ready', () =>
@@ -102,11 +116,6 @@ class Game
 	}
 	gameReady()
 	{
-	    if(this.type == 'FFA')
-	        this.nb_player = NB_PLAYER_FFA;
-	    else
-	        this.nb_player = NB_PLAYER_FTF;
-
 	  	if (this.listPlayerReady.length == this.nb_player)
 	  	{
 	  		// générer la map
