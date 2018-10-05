@@ -1,4 +1,4 @@
-const Map = require('./models/Map.class.js');
+const Map = require('./Map.class.js');
 //Game.class.js => Game => socket.game_join, socket.game_leave, socket.game_ready
 // uniqid pour la Game => socket.game_join_ID
 // creation de l'unique Id
@@ -20,6 +20,7 @@ class Game
 		this.join(player);
 		this.playerLive = []
 		this.listLooser = [];
+		this.scoreTab = [0,1,2,3]
 	}
 	go()
 	{
@@ -55,7 +56,9 @@ class Game
 		// sur 2 secondes => un rapide va se déplacer 3 fois, un moyen 2 fois, un lent 1 fois
 		// 200 tours de setInterval => 6 tours "utiles", 194 autres tours servent juste à gérer les vitesses différentes
 		/*
-		  
+		  setInterval(() => {
+		    
+		  }),200)
 		*/
 	}
 	join(player)
