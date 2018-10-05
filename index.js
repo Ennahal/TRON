@@ -47,9 +47,18 @@ class Server
 	{
 		delete this.players[player.id];
 	}
-	joinGame(player, gameId)
+	joinGame(player, gameType)// gameType : ffa || ftf
 	{
+		// On peut plus juste faire ça :
 		this.games[gameId].join(player);
+		// Il va falloir trouver la première game qui correspond au type et qui est pas pleine
+		for (var id in this.games)
+		{
+			if (this.games[id].type == gameType && !this.games[id].isFull)
+				return this.games[id].join(player);
+		}
+		// Sinon on en créer une
+		return this.createGame(player, gameType);
 	}
 	createPlayer(socket, info)
 	{
@@ -61,7 +70,7 @@ class Server
 		// Créer une partie
 		socket.on("game_create", this.createGame.bind(this, player));
 		// Envoyer la liste des games
-		socket.emit("game_list", Object.keys(this.games));
+		this.io.emit("game_list", Object.keys(this.games));
 		// Envoyer la liste des joueurs
 		this.io.emit("user_list", Object.values(this.players).map((user) =>
 		{
