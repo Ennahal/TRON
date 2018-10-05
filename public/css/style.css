@@ -43,7 +43,8 @@ table {
 }
 body, html{
 	width: 100%;
-	height: 100%;
+    height: 100%;
+    font-family: 'Chakra Petch', sans-serif;
 }
 
 /* ******************************* */
@@ -53,6 +54,7 @@ body, html{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Chakra Petch', sans-serif;
 }
 
 a {
@@ -65,13 +67,14 @@ a {
     flex-direction: row;
     flex-wrap: nowrap;
     height: 100vh;
+    box-sizing: border-box;
 }
 .container_users {
     width: 20%;
-    background-color: green;
+    background-color:black;
 }
 .structure_lobby .container_rooms {
-    background-color: red;
+    background-color: black;
     width: 20%;
 }
 .structure_lobby .container_chat {
@@ -83,6 +86,11 @@ a {
     width: 80%;
     background-color: black;
 }
+#tron-canvas {
+	display: block;
+	margin: 0 auto;
+}
+
 /* ******************************* */
 /*           REGISTER FORM         */
 /* ******************************* */
@@ -94,6 +102,7 @@ a {
     top: 0;
     bottom: 0;
     background-size: 100% 100%;
+    display: none;
 }
 .structure_register_absolute .register_form{
     border: 3px solid rgb(123, 229, 253);
@@ -144,6 +153,46 @@ a {
 /* ******************************* */
 /*           LOBBY                 */
 /* ******************************* */
+
+.container_users .userlist {
+    margin: 15px;
+    color: rgb(123, 229, 253);
+}
+
+.container_users .userlist span{
+    margin: 15px;
+    position: absolute;
+}
+  
+/* ROOM */
+.chat_list {
+    border-bottom: 1px solid #c4c4c4;
+    margin: 0;
+    padding: 18px 16px 10px;
+    color: rgb(123, 229, 253);
+}
+
+.active_chat{ background:black;}
+.chat_people{ overflow:hidden; clear:both;display: flex;}
+.chat_img {
+    float: left;
+    width: 20%;
+}
+#imgOvO {margin-top: 9px;}
+.chat_img img {width: 100%;border-radius: 50%;}
+.chat_ib {
+    float: left;
+    padding: 0 0 0 15px;
+    width: 80%;
+}
+#tone {margin-top: 15px;}
+#ttwo {margin-top: 15px;}
+  
+.container_users .user_img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
 
 /* CHATBOX */
 .container_chat .mesgs {
