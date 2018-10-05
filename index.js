@@ -36,47 +36,55 @@ Player.class.js => Player => haut / bas / gauche / droite : droite / gauche + vi
 //--------------------------------- ancien index.js
 const uniqid = require('uniqid');// npm install --save uniqid
 const PORT = 3000;
-class Server {
-    constructor() {
-        this.express = require('express');
-        this.app = this.express();
-        this.http = require('http').Server(this.app);
-        this.io = require('socket.io')(this.http);
-        this.players = {};
-        this.games = {};
-        this.init();
-    }
-    createGame(player) {
-        var game = new Game(player);
-        this.games[game.id] = game;
-        // uniqid(); => dans Game.constructor
-        // Faire des trucs cools genre new Game :p
-    }
-    removePlayer(player) {
-        delete this.players[player.id];
-    }
-    joinGame(player, gameId) {
-        this.games[gameId].join(player);
-    }
-    createPlayer(socket, info) {// const Player = require('models/Player.class.js');
-        var player = new Player(socket, user);
-        this.players[player.id] = player;
-        console.log("New Player > ", player.login);
-        // Se déconnecter
-        socket.on("disconnect", this.removePlayer.bind(this, player));
-        // Créer une partie
-        socket.on("game_create", this.createGame.bind(this, player));
-        // Envoyer la liste des games
-        socket.emit("game_list", Object.values(this.games));
-        // Envoyer la liste des joueurs
-        socket.emit("player_list", Object.values(this.players));
-        // Rejoindre une partie par son id
-        socket.on("game_join", this.joinGame.bind(this, player));
-    }
-    init() {
-        this.app.use(this.express.static('public'));
-        this.io.on('connection', (socket) => {
-            socket.on('user_register', this.createPlayer.bind(this, socket));
+class Server
+{
+	constructor()
+	{
+		this.express = require('express');
+		this.app = this.express();
+		this.http = require('http').Server(this.app);
+		this.io = require('socket.io')(this.http);
+		this.players = {};
+		this.games = {};
+		this.init();
+	}
+	createGame(player)
+	{
+		var game = new Game(player);
+		this.games[game.id] = game;
+		// uniqid(); => dans Game.constructor
+		// Faire des trucs cools genre new Game :p
+	}
+	removePlayer(player)
+	{
+		delete this.players[player.id];
+	}
+	joinGame(player, gameId)
+	{
+		this.games[gameId].join(player);
+	}
+	createPlayer(socket, info)
+	{// const Player = require('models/Player.class.js');
+		var player = new Player(socket, user);
+		this.players[player.id] = player;
+		console.log("New Player > ", player.login);
+		// Se déconnecter
+		socket.on("disconnect", this.removePlayer.bind(this, player));
+		// Créer une partie
+		socket.on("game_create", this.createGame.bind(this, player));
+		// Envoyer la liste des games
+		socket.emit("game_list", Object.values(this.games));
+		// Envoyer la liste des joueurs
+		socket.emit("player_list", Object.values(this.players));
+		// Rejoindre une partie par son id
+		socket.on("game_join", this.joinGame.bind(this, player));
+	}
+	init()
+	{
+		this.app.use(this.express.static('public'));
+		this.io.on('connection', (socket) =>
+		{
+			socket.on('user_register', this.createPlayer.bind(this, socket));
 			/* A VOIR AVEC LE FRONT POUR LES MESSAGES
 			socket.on("message", (channel, content = "") =>
 			{
@@ -106,13 +114,15 @@ class Server {
 				}
 				this.io.emit("user_resting", socket.user);
 			});*/
-        });
-    }
-    listen(port) {
-        this.http.listen(port, function () {
-            console.log('Example app listening on port ' + port + '!');
-        });
-    }
+		});
+	}
+	listen(port)
+	{
+		this.http.listen(port, function ()
+		{
+			console.log('Example app listening on port '+port+'!');
+		});
+	}
 }
 var server = new Server()
 server.listen(PORT);
