@@ -74,7 +74,7 @@ class Server
 		// Créer une partie
 		socket.on("game_create", this.createGame.bind(this, player));
 		// Envoyer la liste des games
-		socket.emit("game_list", this.games.map(game => game.id));
+		socket.emit("game_list", Object.keys(this.games));
 		// Envoyer la liste des joueurs
 		socket.emit("user_list", this.players.map((user) =>
 		{

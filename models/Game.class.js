@@ -36,7 +36,7 @@ class Game
 		// 1 - Dire a tout que la partie est finie, finir la partie, envoyer le score/podium, etc...
 		/*
 
-      if(this.listLooser.length == 3) {
+      while(this.listLooser.length == 3) {
           On fait appraitre la liste des joueurs du 1er au 4ème
       }
     */
