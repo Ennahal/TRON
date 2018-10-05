@@ -15,36 +15,77 @@
 
     <div class="container_page">
         <div class="containers structure_lobby">
-            <div class="container_rooms"></div>
-            <div class="container_chat">
-                <div class="mesgs" id="app_msglist">
-                    <div class="msg_history">
-                        <div class="incoming_msg">
-                            <div class="incoming_msg_img">
-                                <img src="https://cdn.freebiesupply.com/logos/large/2x/tron-logo-png-transparent.png" alt="tron-message">
-                            </div>
-                            <div class="received_msg">
-                                <div class="received_withd_msg">
-                                    <p>contenu du message</p>
-                                    <span class="time_date"> date / utilisateur</span>
-                                </div>
-                            </div>
-                            <hr>
+            <div class="container_rooms">
+                <div class="chat_list active_chat" v-for="channel in channels">
+                    <div class="chat_people">
+                        <div class="chat_img"><img src="img/ffa.jpg" alt="ffa"> </div>
+                        <div class="chat_ib" id="tone">
+                            <div v-on:click="select(channel)">FFA (0)</div>
                         </div>
                     </div>
-                    <form class="type_msg" method="POST">
-                        <div class="input_msg_write">
-                            <input type="text" class="write_msg" placeholder="Type a message..." />
-                            <button class="msg_send_btn" type="submit">POST</button>
+                    <div class="chat_people">
+                        <div class="chat_img"><img id="imgOvO" src="img/1v1.png" alt="duel"> </div>
+                        <div class="chat_ib" id="ttwo">
+                            <div v-on:click="select(channel)">Duel (0)</div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
-            <div class="container_users"></div>
+            <div class="container_chat">
+                    <div class="mesgs" id="app_msglist">
+                        <div class="msg_history">
+                            <div class="incoming_msg">
+                                <div class="incoming_msg_img">
+                                    <img src="https://cdn.freebiesupply.com/logos/large/2x/tron-logo-png-transparent.png" alt="tron-message">
+                                </div>
+                                <div class="received_msg">
+                                    <div class="received_withd_msg">
+                                        <p>contenu du message</p>
+                                        <span class="time_date"> date / utilisateur</span>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <form class="type_msg" method="POST">
+                            <div class="input_msg_write">
+                                <input type="text" class="write_msg" placeholder="Type a message..." />
+                                <button class="msg_send_btn" type="submit">POST</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            <div class="container_users">
+                <ul class="userlist" v-for="user in users">
+                    <li>
+                        <img class="user_img" v-bind:src="user.avatar" v-bind:alt="user.login" src="https://farm7.staticflickr.com/6008/5994447558_cc97642f53_b.jpg">
+                        <span>kenjy</span>
+                    </li> 
+                </ul>
+                <ul class="userlist" v-for="user in users">
+                    <li>
+                        <img class="user_img" v-bind:src="user.avatar" v-bind:alt="user.login" src="https://farm7.staticflickr.com/6008/5994447558_cc97642f53_b.jpg">
+                        <span>kenjy</span>
+                    </li> 
+                </ul>
+            </div>
         </div>
         <div class="containers structure_game">
             <div class="container_game"></div>
-            <div class="container_users"></div>
+            <div class="container_users">
+                    <ul class="userlist" v-for="user in users">
+                            <li>
+                                <img class="user_img" v-bind:src="user.avatar" v-bind:alt="user.login" src="https://farm7.staticflickr.com/6008/5994447558_cc97642f53_b.jpg">
+                                <span>kenjy</span>
+                            </li> 
+                        </ul>
+                        <ul class="userlist" v-for="user in users">
+                            <li>
+                                <img class="user_img" v-bind:src="user.avatar" v-bind:alt="user.login" src="https://farm7.staticflickr.com/6008/5994447558_cc97642f53_b.jpg">
+                                <span>kenjy</span>
+                            </li> 
+                        </ul>
+            </div>
         </div>
         <div class="containers structure_register_absolute">
             <form class="register_form" action="">
