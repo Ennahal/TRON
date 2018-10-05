@@ -15,7 +15,9 @@ class Map {
     }
     move(player, x, y)// player.x, player.y
     {
-        if (this.testXY(x, y)) {
+    	console.log(player.login, "move");
+        if (this.testXY(x, y))
+        {
             // x, y valides
             this.map[x][y] = player.color;
             return true;

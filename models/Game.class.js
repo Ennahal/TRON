@@ -25,27 +25,20 @@ class Game
 	}
 	go()
 	{
-		console.log("go");
 	  this.listPlayerReady.map(i=> this.playerLive.push(i));
-		console.log("gameloop");
 		// gameloop
 		var interv = setInterval(()=>
 		{
 			let i = 0;
-			console.log("playerLive > ", this.playerLive.length);
 			while (i < this.playerLive.length)
 			{
 				if (this.playerLive[i].isAlive)
 				{
-					console.log("player move");
 					this.playerLive[i].move(this.map);
-					console.log("player /move");
 				}
 				i++;
 			}
-			console.log("send game_map");
  			this.sendAll("game_map", this.map.map);
- 			console.log("send /game_map");
 			/*
 			while (this.playerLive > 1)
 			{
@@ -58,7 +51,7 @@ class Game
 	      		gameFinish();
 			}*/
       
-		}, 100);// VARIABLE => 10 => 100
+		}, 500);// VARIABLE => 10 => 100
 		// 1 - Dire a tout que la partie est finie, finir la partie, envoyer le score/podium, etc...
 		
 
