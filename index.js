@@ -44,7 +44,7 @@ class Server
 		this.app = this.express();
 		this.http = require('http').Server(this.app);
 		this.io = require('socket.io')(this.http);
-		this.rooms
+		this.rooms = [] ;
 		this.players = {};
 		this.games = {};
 		this.init();
@@ -74,9 +74,9 @@ class Server
 		// Créer une partie
 		socket.on("game_create", this.createGame.bind(this, player));
 		// Envoyer la liste des games
-		socket.emit("game_list", Object.values(this.games));
+		socket.emit("game_list", this.games.map(game => game.id));
 		// Envoyer la liste des joueurs
-		socket.emit("user_list", Object.values(this.players));
+		socket.emit("user_list", this.games.map(user => {login:user.login, avatar:user.avatar, id:user.id}));
 		// Rejoindre une partie par son id
 		socket.on("game_join", this.joinGame.bind(this, player));
 	}
