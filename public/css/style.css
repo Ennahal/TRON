@@ -1,0 +1,189 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+body, html{
+	width: 100%;
+    height: 100%;
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+/* ******************************* */
+/*           GLOBAL                */
+/* ******************************* */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Chakra Petch', sans-serif;
+}
+.containers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 100vh;
+    box-sizing: border-box;
+}
+.container_users {
+    width: 20%;
+    background-color:black;
+}
+.structure_lobby .container_rooms {
+    background-color: black;
+    width: 20%;
+}
+.structure_lobby .container_chat {
+    width: 60%;
+    background-color: blue;
+}
+.container_game {
+    width: 80%;
+    background-color: black;
+}
+#tron-canvas {
+	display: block;
+	margin: 0 auto;
+}
+
+/* ******************************* */
+/*           REGISTER FORM         */
+/* ******************************* */
+.structure_register_absolute{
+    background: url('../img/backgroundTrone01.jpg') no-repeat;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-size: 100% 100%;
+    display: none;
+}
+.structure_register_absolute .register_form{
+    border: 3px solid rgb(123, 229, 253);
+    border-radius: 15px;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 30%;
+    height: min-content;
+    background-color: #000;
+}
+
+.structure_register_absolute .register_form ::placeholder{
+    color: rgb(123, 229, 253);
+}
+
+.structure_register_absolute input{
+    border: none;
+    display: block;
+    background: transparent;
+    border-bottom: 2px solid rgb(123, 229, 253);
+    outline: 0;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 30px 10px 80px;
+    font-family: 'Chakra Petch', sans-serif; 
+    color: rgb(123, 229, 253);
+    width: 70%;
+}
+.structure_register_absolute .btn{
+    border: 3px solid rgb(123, 229, 253);
+    border-radius: 27%;
+    width: 30%;
+    padding: 10px; 
+    margin: 0 auto;
+    color: rgb(123, 229, 253);
+* {
+    font-family: 'Chakra Petch', sans-serif;
+    /* font-family: 'Monoton', cursive; */
+}
+
+/* ******************************* */
+/*           LOBBY                 */
+/* ******************************* */
+
+.container_users .userlist {
+    margin: 15px;
+    color: rgb(123, 229, 253);
+}
+
+.container_users .userlist span{
+    margin: 15px;
+    position: absolute;
+}
+  
+/* ROOM */
+.chat_list {
+    border-bottom: 1px solid #c4c4c4;
+    margin: 0;
+    padding: 18px 16px 10px;
+    color: rgb(123, 229, 253);
+}
+
+.active_chat{ background:black;}
+.chat_people{ overflow:hidden; clear:both;display: flex;}
+.chat_img {
+    float: left;
+    width: 20%;
+}
+#imgOvO {margin-top: 9px;}
+.chat_img img {width: 100%;border-radius: 50%;}
+.chat_ib {
+    float: left;
+    padding: 0 0 0 15px;
+    width: 80%;
+}
+#tone {margin-top: 15px;}
+#ttwo {margin-top: 15px;}
+  
+.container_users .user_img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+/* ******************************* */
+/*           IN GAME               */
+/* ******************************* */

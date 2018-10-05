@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Chakra+Petch:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="script.js"></script>
+    <title>3WA TRON</title>
+</head>
+
+<body>
+
+
+    <div class="container_page">
+        <div class="containers structure_lobby">
+            <div class="container_rooms" id="app_chanlist">
+                <div class="chat_list active_chat" v-for="channel in channels">
+                    <div class="chat_people">
+                        <div class="chat_img"><img src="img/ffa.jpg" alt="ffa"> </div>
+                        <div class="chat_ib" id="tone">
+                            <div v-on:click="select(channel)">FFA (0)</div>
+                        </div>
+                    </div>
+                    <div class="chat_people">
+                        <div class="chat_img"><img id="imgOvO" src="img/1v1.png" alt="duel"> </div>
+                        <div class="chat_ib" id="ttwo">
+                            <div v-on:click="select(channel)">Duel (0)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container_chat"></div>
+            <div class="container_users">
+                <ul class="userlist" v-for="user in users">
+                    <li>
+                        <img class="user_img" v-bind:src="user.avatar" v-bind:alt="user.login" src="https://farm7.staticflickr.com/6008/5994447558_cc97642f53_b.jpg">
+                        <span>kenjy</span>
+                    </li> 
+                </ul>
+                <ul class="userlist" v-for="user in users">
+                    <li>
+                        <img class="user_img" v-bind:src="user.avatar" v-bind:alt="user.login" src="https://farm7.staticflickr.com/6008/5994447558_cc97642f53_b.jpg">
+                        <span>kenjy</span>
+                    </li> 
+                </ul>
+            </div>
+        </div>
+        <div class="containers structure_game">
+            <div class="container_game">
+                <canvas id="tron-canvas"></canvas>
+            </div>
+            <div class="container_users"></div>
+        </div>
+        <div class="containers structure_register_absolute">
+            <form class="register_form" action="">
+                <input type="text" name="" id="" placeholder="Pseudo">
+                <input type="url" placeholder="Url de votre avatar">
+                <input class="btn" type="submit" value="let's go">
+            </form>
+        </div>
+    </div>
+    <script src="js/canvas.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/Player.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
